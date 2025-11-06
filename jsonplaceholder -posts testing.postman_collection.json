@@ -1,0 +1,536 @@
+{
+	"info": {
+		"_postman_id": "1936560f-fdda-4221-b4c4-4443441744f9",
+		"name": "jsonplaceholder /posts testing",
+		"description": "Коллекция запросов к API [https://jsonplaceholder.typicode.com/](https://jsonplaceholder.typicode.com/) для демонстрации базового знания Postman.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "49734409",
+		"_collection_link": "https://c1b3a4-5872666.postman.co/workspace/Ivan-Zakharov's-Workspace~a5403da9-a98c-42a2-8039-fedb3b5b01d2/collection/49734409-1936560f-fdda-4221-b4c4-4443441744f9?action=share&source=collection_link&creator=49734409"
+	},
+	"item": [
+		{
+			"name": "TCID = 1 Получение всех постов",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response is an array of 100 objects\", function () {\r",
+							"    var json = pm.response.json();\r",
+							"    pm.expect(json).to.be.an(\"array\").with.lengthOf(100);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Each object has required fields\", function () {\r",
+							"    var json = pm.response.json();\r",
+							"    json.forEach(post => {\r",
+							"        pm.expect(post).to.have.property(\"id\");\r",
+							"        pm.expect(post).to.have.property(\"title\");\r",
+							"        pm.expect(post).to.have.property(\"body\");\r",
+							"        pm.expect(post).to.have.property(\"userId\");\r",
+							"    });\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/posts",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TCID = 2 Получение поста с ID=0",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/posts/0",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"posts",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TCID = 3 Получение поста с ID=1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response object has correct id\", function () {\r",
+							"    var json = pm.response.json();\r",
+							"    pm.expect(json.id).to.eql(1);\r",
+							"    pm.expect(json).to.have.property(\"title\");\r",
+							"    pm.expect(json).to.have.property(\"body\");\r",
+							"    pm.expect(json).to.have.property(\"userId\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/posts/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"posts",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TCID = 4 Получение поста с ID=2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response object has correct id\", function () {\r",
+							"    var json = pm.response.json();\r",
+							"    pm.expect(json.id).to.eql(2);\r",
+							"    pm.expect(json).to.have.property(\"title\");\r",
+							"    pm.expect(json).to.have.property(\"body\");\r",
+							"    pm.expect(json).to.have.property(\"userId\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/posts/2",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"posts",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TCID = 5 Получение поста с ID=99",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response object has correct id\", function () {\r",
+							"    var json = pm.response.json();\r",
+							"    pm.expect(json.id).to.eql(99);\r",
+							"    pm.expect(json).to.have.property(\"title\");\r",
+							"    pm.expect(json).to.have.property(\"body\");\r",
+							"    pm.expect(json).to.have.property(\"userId\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/posts/99",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"posts",
+						"99"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TCID = 6 Получение поста с ID=100",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response object has correct id\", function () {\r",
+							"    var json = pm.response.json();\r",
+							"    pm.expect(json.id).to.eql(100);\r",
+							"    pm.expect(json).to.have.property(\"title\");\r",
+							"    pm.expect(json).to.have.property(\"body\");\r",
+							"    pm.expect(json).to.have.property(\"userId\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/posts/100",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"posts",
+						"100"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TCID = 7 Получение поста с ID=101",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/posts/101",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"posts",
+						"101"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TCID = 8 Получение комментариев для существующего поста (ID=1)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"All comments belong to postId=1\", function () {\r",
+							"    var comments = pm.response.json();\r",
+							"    comments.forEach(comment => {\r",
+							"        pm.expect(comment.postId).to.eql(1);\r",
+							"        pm.expect(comment).to.have.property(\"id\");\r",
+							"        pm.expect(comment).to.have.property(\"name\");\r",
+							"        pm.expect(comment).to.have.property(\"email\");\r",
+							"        pm.expect(comment).to.have.property(\"body\");\r",
+							"    });\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/posts/1/comments",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"posts",
+						"1",
+						"comments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TCID = 9 Попытка получения комментариев для несуществующего поста (ID=0)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response is an empty array\", function () {\r",
+							"    var comments = pm.response.json();\r",
+							"    pm.expect(comments).to.be.an(\"array\").that.is.empty;\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/posts/0/comments",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"posts",
+						"0",
+						"comments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Пример запроса POST",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"title\": \"Integration testing: full valid post\",\r\n  \"body\": \"This is a demonstrative post body to show POST usage.\",\r\n  \"userId\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/posts",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Пример запроса PUT",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status is 200\", () => {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"let json = pm.response.json();\r",
+							"pm.test(\"Response contains id field\", () => {\r",
+							"    pm.expect(json).to.have.property(\"id\").that.eql(1);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"title\": \"PUT update: full replacement\",\r\n  \"body\": \"Updated body via PUT (full replacement).\",\r\n  \"userId\": 1\r\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/posts/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"posts",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Пример запроса PATCH",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status is 200\", () => {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"let json = pm.response.json();\r",
+							"pm.test(\"Response contains id field\", () => {\r",
+							"    pm.expect(json).to.have.property(\"id\").that.eql(1);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"title\": \"PATCH update\"\r\n}\r\n"
+				},
+				"url": {
+					"raw": "{{base_url}}/posts/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"posts",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Пример запроса DELETE",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response body is empty\", function() {\r",
+							"    pm.expect(pm.response.text()).to.eql(\"{}\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/posts/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"posts",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
